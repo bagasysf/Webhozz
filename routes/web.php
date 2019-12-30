@@ -13,8 +13,13 @@
 
 // use Illuminate\Routing\Route;
 
+// menampilkan table
 Route::get('/category', 'CategoryController@index');
+// show form
 Route::get('/category/create', 'CategoryController@create');
+//insert ke db
+Route::post('/category', 'CategoryController@store');
+
 
 Route::get('/', function () {
 
