@@ -19,6 +19,15 @@ Route::get('/category', 'CategoryController@index');
 Route::get('/category/create', 'CategoryController@create');
 //insert ke db
 Route::post('/category', 'CategoryController@store');
+// insert ke db
+Route::get('/category/{id}/edit', 'CategoryController@edit');
+// upadate ke db
+Route::post('/category/{id}/update', 'CategoryController@update');
+// delete db 
+Route::post('/category/{id}', 'CategoryController@destroy');
+
+
+
 
 
 Route::get('/', function () {

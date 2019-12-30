@@ -17,7 +17,6 @@ class CategoryController extends Controller
         return view('category.index', [
             'title' => $title,
             'categories' => $rows
-
         ]);
     }
 
@@ -40,6 +39,33 @@ class CategoryController extends Controller
             'description' => request('description')
         ]);
 
+
+        return redirect('/category');
+    }
+
+    public function edit($id)
+    {
+        $category = Category::where('id', $id)->first();
+        return view('category.edit', [
+            'category' => $category
+        ]);
+    }
+
+    public function update($id)
+    {
+        $category = Category::where('id', $id)->first();
+        $category->update([
+            'name' => request('name'),
+            'description' => request('description')
+        ]);
+
+        return redirect('/category');
+    }
+
+    public function destroy($id)
+    {
+        $category = Category::where('id', $id)->first();
+        $category->delete();
 
         return redirect('/category');
     }
