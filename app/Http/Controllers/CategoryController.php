@@ -13,13 +13,20 @@ class CategoryController extends Controller
     public function index()
     {
         $title = 'Category Page';
-        return view('category.index', ['title' => $title]);
+        $rows = Category::all();
+        return view('category.index', [
+            'title' => $title,
+            'categories' => $rows
+
+        ]);
     }
 
     public function create()
     {
         $title = 'Create Category';
-        return view('category.create', ['title' => $title]);
+        return view('category.create', [
+            'title' => $title,
+        ]);
     }
 
     public function store()
