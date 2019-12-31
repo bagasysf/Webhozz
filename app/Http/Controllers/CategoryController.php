@@ -45,9 +45,11 @@ class CategoryController extends Controller
 
     public function edit($id)
     {
+        $title = 'Category Page';
         $category = Category::where('id', $id)->first();
         return view('category.edit', [
-            'category' => $category
+            'category' => $category,
+            'title' => $title
         ]);
     }
 
