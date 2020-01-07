@@ -24,7 +24,7 @@ class CategoryController extends Controller
     {
         $title = 'Create Category';
         return view('category.create', [
-            'title' => $title,
+            'title' => $title
         ]);
     }
 

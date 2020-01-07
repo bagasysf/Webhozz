@@ -14,6 +14,9 @@
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('styles/bootstrap.min.css') }}" rel=" stylesheet">
 
+    <!-- Custom CSS -->
+    <link href="{{ asset('styles/webhozz.css') }}" rel=" stylesheet">
+
 
     <style>
         .bd-placeholder-img {
@@ -90,5 +93,7 @@
         </footer>
     </div>
 </body>
+
+<script src="{{ asset('styles/webhozz.js') }}"></script>
 
 </html>

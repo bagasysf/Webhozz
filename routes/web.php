@@ -26,6 +26,8 @@ Route::put('/category/{id}', 'CategoryController@update');
 // delete db 
 Route::delete('/category/{id}', 'CategoryController@destroy');
 
+Route::resource('product', 'ProductController');
+
 
 
 
