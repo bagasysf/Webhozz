@@ -3,7 +3,7 @@
 @section('title', $title)
 
 @section('content')
-<h3>Create new category</h3>
+<h3>Create new product</h3>
 <hr>
 <form action="/product" method="post" enctype="multipart/form-data">
     @csrf

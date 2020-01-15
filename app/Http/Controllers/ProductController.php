@@ -35,17 +35,22 @@ class ProductController extends Controller
     {
         #upload file
 
-        $image = request('image');
-        $filename = $image->getClientOriginalName(); //nama image yang akan disimpan
-        $filenameRandom = \Str::random(20) . '.' . $image->getClientOriginalExtension(); //extension gambar asli
-        $image->move(public_path('images/'), $filenameRandom);
+
+        $check = request()->hasFile('image');
+        if ($check) {
+            $image = request('image');
+            $filenameRandom = \Str::random(20) . '.' . $image->getClientOriginalExtension(); //extension gambar asli
+            $image->move(public_path('images/'), $filenameRandom);
+        } else {
+            $defaultphoto = 'default.png';
+        }
 
         Product::create([
             'category_id' => request('category_id'),
             'name' => request('name'),
             'price' => request('price'),
             'description' => request('description'),
-            'image' => $filenameRandom
+            'image' => $check ? $filenameRandom : $defaultphoto
         ]);
 
         return redirect('/product');
@@ -66,11 +71,25 @@ class ProductController extends Controller
     public function update($id)
     {
         $product = Product::where('id', $id)->first();
+
+        $check = request()->hasFile('image');
+
+        if ($check) {
+            $imagePath = public_path() . '/images/' . $product->image;
+            unlink($imagePath);
+
+            //import data yang baru
+            $image = request('image');
+            $filenameRandom = \Str::random(20) . '.' . $image->getClientOriginalExtension(); //extension gambar asli
+            $image->move(public_path('images/'), $filenameRandom);
+        }
+
         $product->update([
             'category_id' => request('category_id'),
             'name' => request('name'),
             'price' => request('price'),
-            'description' => request('description')
+            'description' => request('description'),
+            'image' => $check ? $filenameRandom : $product->image
         ]);
 
         return redirect('/product');

@@ -4,9 +4,9 @@
 
 @section('content')
 <div class="table-responsive">
-    <h1>Categories</h1>
+    <h1>Products</h1>
     <a href="/product/create" class="btn btn-info my-3">Create new product</a>
-    <table id="dtHorizontalExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+    <table id="dtHorizontalExample" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
             <tr>
                 <th>No</th>

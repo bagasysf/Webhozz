@@ -28,19 +28,30 @@ Route::delete('/category/{id}', 'CategoryController@destroy');
 
 Route::resource('product', 'ProductController');
 
+Route::get('/', 'WelcomeController');
 
 
+// Route::get('/', function () {
 
+//     $message = "But Laravel is Awesome";
+//     $language = ['PHP', 'Javascript', 'JAVA', 'Phyton', 'Golang'];
+//     $number = 10 * 5;
 
-Route::get('/', function () {
+//     return view('test', [
+//         'language' => $language,
+//         'message' => $message,
+//         'number' => $number
+//     ]);
+// });
 
-    $message = "But Laravel is Awesome";
-    $language = ['PHP', 'Javascript', 'JAVA', 'Phyton', 'Golang'];
-    $number = 10 * 5;
+Auth::routes();
 
-    return view('test', [
-        'language' => $language,
-        'message' => $message,
-        'number' => $number
-    ]);
-});
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('transaction', 'Transaction\\TransactionController');
+Route::resource('transaction-detail', 'TransactionDetail\\TransactionDetailController');
+
+Route::post('add-to-cart/{id}', 'CartController');
+
+Route::get('checkout', 'CheckoutController@index');
+Route::post('checkout/{id}', 'CheckoutController@pay');

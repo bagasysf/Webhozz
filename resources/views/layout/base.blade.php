@@ -42,12 +42,18 @@
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
         <h5 class="my-0 mr-md-auto font-weight-normal">Company name</h5>
         <nav class="my-2 my-md-0 mr-md-3">
-            <a class="p-2 text-dark" href="/category">Category</a>
-            <a class="p-2 text-dark" href="#">Product</a>
-            <a class="p-2 text-dark" href="#">Support</a>
-            <a class="p-2 text-dark" href="#">Pricing</a>
+            @guest
+            <a class="p-2 text-dark" href="/login">Login</a>
+            <a class="p-2 text-dark" href="/product">Register</a>
+            @else
+            <a class="p-2 {{request()->is('category')?'active': 'text-dark'}}" href="/category">Category</a>
+            <a class="p-2 {{request()->is('product')?'active': 'text-dark'}}" href="/product">Product</a>
+            <a class="p-2 text-dark" href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+            @endguest
         </nav>
-        <a class="btn btn-outline-primary" href="#">Sign up</a>
     </div>
 
 

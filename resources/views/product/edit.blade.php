@@ -5,7 +5,7 @@
 @section('content')
 <h3>Edit Product {{$products->name}}</h3>
 <hr>
-<form action="/product/{{$products->id}}" method="POST">
+<form action="/product/{{$products->id}}" method="POST" enctype="multipart/form-data">
     @csrf
     @method("PUT")
     <div class="form-group">
@@ -13,7 +13,7 @@
         <select class="form-control" name="category_id">
             <option value="">Please select</option>
             @foreach($categories as $item)
-            <option value='{{$item->id}}'>{{$item->name}}</option>
+            <option value='{{$item->id}}' {{$products->category_id == $item->id ? 'selected':null}}>{{$item->name}}</option>
             @endforeach
         </select>
     </div>
@@ -30,8 +30,9 @@
         <textarea name="description" id="description" class="form-control" cols="30" rows="10">{{$products->description}}"</textarea>
     </div>
     <div class="form-group">
-        <label>Image</label>
-        <input type="file" name="image" class="form-control" value="{{$products->image}}">
+        <label>Image</label><br>
+        <img src="{{asset('images') . '/' . $products->image}}" alt="" style="width: 128px; height: 128px">
+        <input type="file" name="image" class="form-control">
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Update</button>
